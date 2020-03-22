@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FE029F8242728A70009935E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE029F7242728A70009935E /* AppDelegate.swift */; };
+		2FE029FA242728A70009935E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE029F9242728A70009935E /* ContentView.swift */; };
+		2FE029FC242728A80009935E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE029FB242728A80009935E /* Assets.xcassets */; };
+		2FE029FF242728A80009935E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE029FE242728A80009935E /* Preview Assets.xcassets */; };
+		2FE02A02242728A80009935E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE02A00242728A80009935E /* Main.storyboard */; };
+		2FE02A0E242728A80009935E /* JsonVistasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE02A0D242728A80009935E /* JsonVistasTests.swift */; };
+		2FE02A19242728A80009935E /* JsonVistasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE02A18242728A80009935E /* JsonVistasUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2FE02A0A242728A80009935E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FE029EC242728A70009935E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FE029F3242728A70009935E;
+			remoteInfo = JsonVistas;
+		};
+		2FE02A15242728A80009935E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FE029EC242728A70009935E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FE029F3242728A70009935E;
+			remoteInfo = JsonVistas;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2FE029F4242728A70009935E /* JsonVistas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonVistas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE029F7242728A70009935E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2FE029F9242728A70009935E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2FE029FB242728A80009935E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FE029FE242728A80009935E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2FE02A01242728A80009935E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FE02A03242728A80009935E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FE02A04242728A80009935E /* JsonVistas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JsonVistas.entitlements; sourceTree = "<group>"; };
+		2FE02A09242728A80009935E /* JsonVistasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonVistasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE02A0D242728A80009935E /* JsonVistasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonVistasTests.swift; sourceTree = "<group>"; };
+		2FE02A0F242728A80009935E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FE02A14242728A80009935E /* JsonVistasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonVistasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE02A18242728A80009935E /* JsonVistasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonVistasUITests.swift; sourceTree = "<group>"; };
+		2FE02A1A242728A80009935E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FE029F1242728A70009935E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A06242728A80009935E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A11242728A80009935E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FE029EB242728A70009935E = {
+			isa = PBXGroup;
+			children = (
+				2FE029F6242728A70009935E /* JsonVistas */,
+				2FE02A0C242728A80009935E /* JsonVistasTests */,
+				2FE02A17242728A80009935E /* JsonVistasUITests */,
+				2FE029F5242728A70009935E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FE029F5242728A70009935E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FE029F4242728A70009935E /* JsonVistas.app */,
+				2FE02A09242728A80009935E /* JsonVistasTests.xctest */,
+				2FE02A14242728A80009935E /* JsonVistasUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FE029F6242728A70009935E /* JsonVistas */ = {
+			isa = PBXGroup;
+			children = (
+				2FE029F7242728A70009935E /* AppDelegate.swift */,
+				2FE029F9242728A70009935E /* ContentView.swift */,
+				2FE029FB242728A80009935E /* Assets.xcassets */,
+				2FE02A00242728A80009935E /* Main.storyboard */,
+				2FE02A03242728A80009935E /* Info.plist */,
+				2FE02A04242728A80009935E /* JsonVistas.entitlements */,
+				2FE029FD242728A80009935E /* Preview Content */,
+			);
+			path = JsonVistas;
+			sourceTree = "<group>";
+		};
+		2FE029FD242728A80009935E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2FE029FE242728A80009935E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2FE02A0C242728A80009935E /* JsonVistasTests */ = {
+			isa = PBXGroup;
+			children = (
+				2FE02A0D242728A80009935E /* JsonVistasTests.swift */,
+				2FE02A0F242728A80009935E /* Info.plist */,
+			);
+			path = JsonVistasTests;
+			sourceTree = "<group>";
+		};
+		2FE02A17242728A80009935E /* JsonVistasUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2FE02A18242728A80009935E /* JsonVistasUITests.swift */,
+				2FE02A1A242728A80009935E /* Info.plist */,
+			);
+			path = JsonVistasUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FE029F3242728A70009935E /* JsonVistas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE02A1D242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistas" */;
+			buildPhases = (
+				2FE029F0242728A70009935E /* Sources */,
+				2FE029F1242728A70009935E /* Frameworks */,
+				2FE029F2242728A70009935E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JsonVistas;
+			productName = JsonVistas;
+			productReference = 2FE029F4242728A70009935E /* JsonVistas.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2FE02A08242728A80009935E /* JsonVistasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE02A20242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistasTests" */;
+			buildPhases = (
+				2FE02A05242728A80009935E /* Sources */,
+				2FE02A06242728A80009935E /* Frameworks */,
+				2FE02A07242728A80009935E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FE02A0B242728A80009935E /* PBXTargetDependency */,
+			);
+			name = JsonVistasTests;
+			productName = JsonVistasTests;
+			productReference = 2FE02A09242728A80009935E /* JsonVistasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FE02A13242728A80009935E /* JsonVistasUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE02A23242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistasUITests" */;
+			buildPhases = (
+				2FE02A10242728A80009935E /* Sources */,
+				2FE02A11242728A80009935E /* Frameworks */,
+				2FE02A12242728A80009935E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FE02A16242728A80009935E /* PBXTargetDependency */,
+			);
+			name = JsonVistasUITests;
+			productName = JsonVistasUITests;
+			productReference = 2FE02A14242728A80009935E /* JsonVistasUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FE029EC242728A70009935E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Mellis;
+				TargetAttributes = {
+					2FE029F3242728A70009935E = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					2FE02A08242728A80009935E = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 2FE029F3242728A70009935E;
+					};
+					2FE02A13242728A80009935E = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 2FE029F3242728A70009935E;
+					};
+				};
+			};
+			buildConfigurationList = 2FE029EF242728A70009935E /* Build configuration list for PBXProject "JsonVistas" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FE029EB242728A70009935E;
+			productRefGroup = 2FE029F5242728A70009935E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FE029F3242728A70009935E /* JsonVistas */,
+				2FE02A08242728A80009935E /* JsonVistasTests */,
+				2FE02A13242728A80009935E /* JsonVistasUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FE029F2242728A70009935E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE02A02242728A80009935E /* Main.storyboard in Resources */,
+				2FE029FF242728A80009935E /* Preview Assets.xcassets in Resources */,
+				2FE029FC242728A80009935E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A07242728A80009935E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A12242728A80009935E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FE029F0242728A70009935E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE029FA242728A70009935E /* ContentView.swift in Sources */,
+				2FE029F8242728A70009935E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A05242728A80009935E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE02A0E242728A80009935E /* JsonVistasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE02A10242728A80009935E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE02A19242728A80009935E /* JsonVistasUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2FE02A0B242728A80009935E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FE029F3242728A70009935E /* JsonVistas */;
+			targetProxy = 2FE02A0A242728A80009935E /* PBXContainerItemProxy */;
+		};
+		2FE02A16242728A80009935E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FE029F3242728A70009935E /* JsonVistas */;
+			targetProxy = 2FE02A15242728A80009935E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2FE02A00242728A80009935E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FE02A01242728A80009935E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2FE02A1B242728A80009935E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2FE02A1C242728A80009935E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2FE02A1E242728A80009935E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JsonVistas/JsonVistas.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"JsonVistas/Preview Content\"";
+				DEVELOPMENT_TEAM = KLQC884752;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = JsonVistas/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2FE02A1F242728A80009935E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JsonVistas/JsonVistas.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"JsonVistas/Preview Content\"";
+				DEVELOPMENT_TEAM = KLQC884752;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = JsonVistas/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2FE02A21242728A80009935E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KLQC884752;
+				INFOPLIST_FILE = JsonVistasTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JsonVistas.app/Contents/MacOS/JsonVistas";
+			};
+			name = Debug;
+		};
+		2FE02A22242728A80009935E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KLQC884752;
+				INFOPLIST_FILE = JsonVistasTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JsonVistas.app/Contents/MacOS/JsonVistas";
+			};
+			name = Release;
+		};
+		2FE02A24242728A80009935E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KLQC884752;
+				INFOPLIST_FILE = JsonVistasUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistasUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = JsonVistas;
+			};
+			name = Debug;
+		};
+		2FE02A25242728A80009935E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KLQC884752;
+				INFOPLIST_FILE = JsonVistasUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mellis.JsonVistasUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = JsonVistas;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FE029EF242728A70009935E /* Build configuration list for PBXProject "JsonVistas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE02A1B242728A80009935E /* Debug */,
+				2FE02A1C242728A80009935E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE02A1D242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE02A1E242728A80009935E /* Debug */,
+				2FE02A1F242728A80009935E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE02A20242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE02A21242728A80009935E /* Debug */,
+				2FE02A22242728A80009935E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE02A23242728A80009935E /* Build configuration list for PBXNativeTarget "JsonVistasUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE02A24242728A80009935E /* Debug */,
+				2FE02A25242728A80009935E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FE029EC242728A70009935E /* Project object */;
+}
