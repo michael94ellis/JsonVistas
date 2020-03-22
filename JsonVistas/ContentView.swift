@@ -57,10 +57,9 @@ struct ScreenArea: View {
             DraggableCircle()
             DraggableCircle()
         }
-        .frame(width: 400, height: 400, alignment: .leading)
+        .frame(width: 414, height: 736)
         .background(Rectangle()
-                        .fill(Color.blue)
-                        .frame(width: 414, height: 736))
+                        .fill(Color.blue))
     }
 }
 
