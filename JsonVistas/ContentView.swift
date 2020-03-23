@@ -10,12 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var draggingItemLocation: CGPoint = .zero
+    
     var body: some View {
         HStack {
             HStack {
-                ScreenArea()
+                ScreenArea(display: $draggingItemLocation)
             }
             VStack {
+                Text("Current Position")
+                Text("X: \(draggingItemLocation.x)")
+                Text("Y: \(draggingItemLocation.y)")
                 Text("Output")
                 Text("V:|-(example)-|")
                 Text("H:|-(example)-|")
@@ -28,17 +33,26 @@ struct ContentView: View {
 
 struct ScreenArea: View {
     
+    var displayPoint: Binding<CGPoint>
+    var dropDelegate: DraggableCircleDropDelegate
+    
+    init(display: Binding<CGPoint>) {
+        displayPoint = display
+        dropDelegate = DraggableCircleDropDelegate()
+    }
+    
     var body: some View {
-        return VStack {
-            DraggableCircle(boundedBy: CGRect(x: 50, y: 50, width: 414, height: 736))
+        VStack {
+            DraggableCircle(boundedBy: CGRect(x: 50, y: 50, width: 414, height: 736), location: displayPoint)
+            .position(x: 0, y: 0)
         }
         .frame(width: 414, height: 736)
         .background(Rectangle().fill(Color.blue))
-        .onDrop(of: ["myStuff"], delegate: MyDropDelegate())
+        .onDrop(of: ["drag.circle"], delegate: dropDelegate)
     }
 }
 
-struct MyDropDelegate: DropDelegate {
+class DraggableCircleDropDelegate: DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         return true
     }

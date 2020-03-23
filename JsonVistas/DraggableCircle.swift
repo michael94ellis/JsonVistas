@@ -15,11 +15,12 @@ struct DraggableCircle: View {
     @State private var newPosition: CGPoint = .zero
     @State private var isValidLocation = true
     
+    var currentLocation: Binding<CGPoint>
     private var parentBounds = CGRect()
     
-    init(boundedBy: CGRect) {
+    init(boundedBy: CGRect, location: Binding<CGPoint>) {
         parentBounds = boundedBy
-        print()
+        currentLocation = location
     }
     
     var body: some View {
@@ -31,6 +32,7 @@ struct DraggableCircle: View {
                 .onChanged { value in
                     self.currentPosition = CGSize(width: value.translation.width + self.newPosition.x, height: value.translation.height + self.newPosition.y).point
                     print("CCC: \(self.currentPosition)")
+                    self.currentLocation.wrappedValue = self.currentPosition
             }
             .onEnded { value in
                 self.currentPosition = CGSize(width: value.translation.width + self.newPosition.x, height: value.translation.height + self.newPosition.y).point
@@ -48,13 +50,5 @@ extension CGSize {
 extension CGPoint {
     public var size: CGSize {
         CGSize(width: self.x, height: self.y)
-    }
-}
-
-struct DraggableCircle_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { g in
-             DraggableCircle(boundedBy: CGRect(x: 0, y: 0, width: g.size.width, height: g.size.height))
-        }
     }
 }
