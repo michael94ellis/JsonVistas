@@ -30,29 +30,29 @@ struct ContentView: View {
         }.padding(50)
     }
 }
-
 struct ScreenArea: View {
     
     var displayPoint: Binding<CGPoint>
-    var dropDelegate: DraggableCircleDropDelegate
+    var dropDelegate: DraggableViewDropDelegate
+    @State private var size: CGSize = CGSize(width: 414, height: 736)
     
     init(display: Binding<CGPoint>) {
         displayPoint = display
-        dropDelegate = DraggableCircleDropDelegate()
+        dropDelegate = DraggableViewDropDelegate()
     }
     
     var body: some View {
         VStack {
-            DraggableCircle(boundedBy: CGRect(x: 50, y: 50, width: 414, height: 736), location: displayPoint)
-            .position(x: 0, y: 0)
+            DraggableView(boundedBy: CGRect(x: 0, y: 0, width: size.width, height: size.height), location: displayPoint)
+            .position(x: 100, y: 50)
         }
-        .frame(width: 414, height: 736)
+        .frame(width: size.width, height: size.height)
         .background(Rectangle().fill(Color.blue))
         .onDrop(of: ["drag.circle"], delegate: dropDelegate)
     }
 }
 
-class DraggableCircleDropDelegate: DropDelegate {
+class DraggableViewDropDelegate: DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         return true
     }
