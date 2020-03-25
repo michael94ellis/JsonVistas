@@ -1,5 +1,5 @@
 //
-//  DraggableView.swift
+//  DraggableRect.swift
 //  JsonVistas
 //
 //  Created by Michael Ellis on 3/22/20.
@@ -9,19 +9,13 @@
 import SwiftUI
 import AppKit
 
-struct DraggableView: View {
-    
-    @State private var currentPosition: CGPoint = .zero
-    @State private var newPosition: CGPoint = .zero
+struct DraggableRect: View {
+    @State public var currentPosition: CGPoint = CGPoint(x: 1, y: 1)
+    @State private(set) public var newPosition: CGPoint = .zero
     @State private var size: CGSize = CGSize(width: 200, height: 60)
-    @State private var lastValidPosition: CGPoint = .zero
-    @State private var isValidLocation = true
+    @Binding var location: CGPoint
     
-    private var parentBounds = CGRect()
-    
-    init(boundedBy: CGRect) {
-        parentBounds = boundedBy
-    }
+    public var parentBounds: CGRect
     
     var drag: some Gesture {
         DragGesture()
@@ -31,28 +25,21 @@ struct DraggableView: View {
         }
         .onEnded { value in
             self.currentPosition = CGSize(width: value.translation.width + self.newPosition.x, height: value.translation.height + self.newPosition.y).point
-            if self.inbounds {
-                self.newPosition = self.currentPosition
-                self.lastValidPosition = self.currentPosition
-            } else {
-                self.currentPosition = self.lastValidPosition
+            // Keep things in bounds
+            if self.currentPosition.x > self.parentBounds.maxX  - self.size.width {
+                self.currentPosition.x = self.parentBounds.maxX - self.size.width
+            } else if self.currentPosition.x < self.parentBounds.minX {
+                self.currentPosition.x = self.parentBounds.minX
             }
+            if self.currentPosition.y > self.parentBounds.maxY - self.size.height {
+                self.currentPosition.y = self.parentBounds.maxY - self.size.height
+            } else if self.currentPosition.y < self.parentBounds.minY {
+                self.currentPosition.y = self.parentBounds.minY
+            }
+            self.newPosition = self.currentPosition
+            self.location = self.newPosition
             print("New Positon: \(self.newPosition)")
         }
-    }
-    
-    private var inbounds: Bool {
-        if self.currentPosition.x > parentBounds.maxX  - size.width {
-            self.currentPosition.x = parentBounds.maxX - size.width
-        } else if self.currentPosition.x < parentBounds.minX {
-            self.currentPosition.x = parentBounds.minX
-        }
-        if self.currentPosition.y > parentBounds.maxY - size.height {
-            self.currentPosition.y = parentBounds.maxY - size.height
-        } else if self.currentPosition.y < parentBounds.minY {
-            self.currentPosition.y = parentBounds.minY
-        }
-        return true
     }
     
     var body: some View {

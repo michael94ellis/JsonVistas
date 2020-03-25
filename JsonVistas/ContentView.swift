@@ -10,29 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State public var views: [DraggableView] = []
-    private var newDragView: DraggableView {
-        DraggableView(boundedBy: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
-    }
     var dropDelegate: DraggableViewDropDelegate
+    @State public var draggableViews: [DraggableRect] = []
     @State private var size: CGSize = CGSize(width: 414, height: 736)
+    @State public var locs: [CGPoint] = []
     
     init() {
         dropDelegate = DraggableViewDropDelegate()
     }
     
+    func newDragView() -> DraggableRect {
+        locs.append(.zero)
+        let index = locs.indices.max() ?? 0
+        return DraggableRect(location: $locs[index], parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
+    }
+    
     func addView() {
-        self.views.append(newDragView)
-        print("YEE HAW")
+        self.draggableViews.append(newDragView())
     }
     
     var body: some View {
         HStack {
             ZStack {
-                if !views.isEmpty {
-                    ForEach(self.views.indices, id: \.self) { index in
-                        self.views[index]
-                            .position(x: 0, y: 0)
+                if !draggableViews.isEmpty {
+                    ForEach(self.draggableViews.indices, id: \.self) { index in
+                        self.draggableViews[index].position(x: 0, y: 0)
                     }
                 }
             }
@@ -43,6 +45,11 @@ struct ContentView: View {
                 Button("Add View", action: {
                     self.addView()
                 })
+                if !locs.isEmpty {
+                    ForEach((0...self.locs.count - 1), id: \.self) { index in
+                    Text("X: \(String(Int(self.locs[index].x))), Y: \(String(Int(self.locs[index].x)))")
+                    }
+                }
             }
             .frame(width: CGFloat(100), height: CGFloat(200), alignment: .leading)
             .padding(.trailing, CGFloat(20))
