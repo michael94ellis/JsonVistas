@@ -11,11 +11,16 @@ import SwiftUI
 struct ContentView: View {
     
     @State var draggingItemLocation: CGPoint = .zero
+    var screenArea: ScreenArea?
+    
+    init() {
+        self.screenArea = ScreenArea(display: $draggingItemLocation)
+    }
     
     var body: some View {
         HStack {
             HStack {
-                ScreenArea(display: $draggingItemLocation)
+                self.screenArea
             }
             VStack {
                 Text("Current Position")
@@ -32,6 +37,8 @@ struct ContentView: View {
 }
 struct ScreenArea: View {
     
+    @State public var draggableViews: [String] = []
+    
     var displayPoint: Binding<CGPoint>
     var dropDelegate: DraggableViewDropDelegate
     @State private var size: CGSize = CGSize(width: 414, height: 736)
@@ -41,10 +48,23 @@ struct ScreenArea: View {
         dropDelegate = DraggableViewDropDelegate()
     }
     
+    func addView() {
+        self.draggableViews.append("DV")
+        print("YEE HAW")
+    }
+    
+    func buildView() -> DraggableView {
+       return DraggableView(boundedBy: CGRect(x: -50, y: 0, width: self.size.width, height: self.size.height), location: self.displayPoint)
+    }
+    
     var body: some View {
         VStack {
-            DraggableView(boundedBy: CGRect(x: 0, y: 0, width: size.width, height: size.height), location: displayPoint)
-            .position(x: 100, y: 50)
+            Button("Add View", action: {
+                self.addView()
+            })
+            ForEach(draggableViews, id: \.self) { view in
+                self.buildView()
+            }
         }
         .frame(width: size.width, height: size.height)
         .background(Rectangle().fill(Color.blue))

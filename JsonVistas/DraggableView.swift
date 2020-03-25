@@ -48,10 +48,10 @@ struct DraggableView: View {
     }
     
     private var inbounds: Bool {
-        if self.currentPosition.x > parentBounds.maxX - size.width {
-            self.currentPosition.x = parentBounds.maxX - size.width
-        } else if self.currentPosition.x < parentBounds.minX {
-            self.currentPosition.x = parentBounds.minX
+        if self.currentPosition.x > parentBounds.maxX - 150 {
+            self.currentPosition.x = parentBounds.maxX - 150
+        } else if self.currentPosition.x < parentBounds.minX + 50 {
+            self.currentPosition.x = parentBounds.minX + 50
         }
         if self.currentPosition.y > parentBounds.maxY - size.height - 20 {
             self.currentPosition.y = parentBounds.maxY - size.height - 20
