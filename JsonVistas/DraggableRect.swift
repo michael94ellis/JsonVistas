@@ -13,8 +13,12 @@ struct DraggableRect: View {
     @State private(set) public var newPosition: CGPoint = .zero
     @State private var size: CGSize = CGSize(width: 60, height: 60)
     
-    @Binding public var location: CGPoint
+    public var location: Binding<CGPoint>?
     public var parentBounds: CGRect
+    
+    init(parentBounds: CGRect) {
+        self.parentBounds = parentBounds
+    }
     
     var drag: some Gesture {
         DragGesture()
@@ -36,7 +40,7 @@ struct DraggableRect: View {
                 self.currentPosition.y = self.parentBounds.minY
             }
             self.newPosition = self.currentPosition
-            self.location = self.newPosition
+            self.location?.wrappedValue = self.newPosition
             print("New Positon: \(self.newPosition)")
         }
     }

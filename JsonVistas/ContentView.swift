@@ -11,18 +11,19 @@ import SwiftUI
 struct DraggableViewReference {
     var name: String
     var location: CGPoint
+    var view: DraggableRect
     
-    init(name: String, location: CGPoint) {
+    init(name: String, location: CGPoint, view: DraggableRect) {
         self.name = name
         self.location = location
+        self.view = view
     }
 }
 
 struct ContentView: View {
     
     var dropDelegate: DraggableViewDropDelegate
-    @State public var draggableViews: [DraggableRect] = []
-    @State public var viewLocations: [DraggableViewReference] = []
+    @State public var views: [DraggableViewReference] = []
     @State private var size: CGSize = CGSize(width: 414, height: 736)
     
     @State var nameTextField: String = ""
@@ -32,16 +33,15 @@ struct ContentView: View {
     }
     
     func addView(name: String) {
-        viewLocations.append(DraggableViewReference(name: name, location: .zero))
-        let index = viewLocations.count - 1
+        let newView = DraggableRect(parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
+        views.append(DraggableViewReference(name: name, location: newView.location?.wrappedValue ?? .zero, view: newView))
+        
         // FIXME: viewLocation is linked with draggableView and causes reference problems
-        let newView = DraggableRect(location: $viewLocations[index].location, parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
-        draggableViews.append(newView)
     }
     
     func getHorizontalString() -> String {
         var hStr = "H:|-"
-        for view in (viewLocations.sorted { $0.location.x < $1.location.x }) {
+        for view in (views.sorted { $0.location.x < $1.location.x }) {
             hStr += "(\(view.name))-"
         }
         hStr += "|"
@@ -50,7 +50,7 @@ struct ContentView: View {
     
     func getVerticalString() -> String {
         var vStr = "V:|-"
-        for view in (viewLocations.sorted { $0.location.y < $1.location.y }) {
+        for view in (views.sorted { $0.location.y < $1.location.y }) {
             vStr += "(\(view.name))-"
         }
         vStr += "|"
@@ -60,18 +60,12 @@ struct ContentView: View {
     var body: some View {
         HStack {
             ZStack {
-                if !draggableViews.isEmpty {
-                    ForEach(self.draggableViews.indices, id: \.self) { index in
-                        self.draggableViews[index]
+                if !views.isEmpty {
+                    ForEach(self.views.indices, id: \.self) { index in
+                        self.views[index].view
                             .position(x: 60, y: 60)
                             .onLongPressGesture {
-                                self.draggableViews.remove(at: index)
-                                if self.viewLocations.count > 1,
-                                    self.viewLocations.indices.contains(index) {
-                                    self.viewLocations.remove(at: index)
-                                } else {
-                                    self.viewLocations = []
-                                }
+                                self.views.remove(at: index)
                         }
                     }
                 }
@@ -88,9 +82,9 @@ struct ContentView: View {
                         self.nameTextField = ""
                     })
                 }
-                if !viewLocations.isEmpty && !draggableViews.isEmpty {
-                    ForEach((0...self.draggableViews.count - 1), id: \.self) { index in
-                        Text("\(String(self.viewLocations[index].name)): (X: \(String(Int(self.viewLocations[index].location.x))), Y: \(String(Int(self.viewLocations[index].location.y))))")
+                if !views.isEmpty {
+                    ForEach((0...self.views.count - 1), id: \.self) { index in
+                        Text("\(String(self.views[index].name)): (X: \(String(Int(self.views[index].location.x))), Y: \(String(Int(self.views[index].location.y))))")
                     }
                     Text(getHorizontalString())
                     Text(getVerticalString())
