@@ -29,6 +29,24 @@ struct ContentView: View {
         self.draggableViews.append(newDragView())
     }
     
+    func getHorizontalString() -> String {
+        var hStr = "H:|-"
+        for loc in (locs.sorted { $0.x < $1.x }) {
+            hStr += "(\(loc.x))-"
+        }
+        hStr += "-|"
+        return hStr
+    }
+    
+    func getVerticalString() -> String {
+        var vStr = "V:|-"
+        for loc in (locs.sorted { $0.y < $1.y }) {
+            vStr += "(\(loc.y))-"
+        }
+        vStr += "-|"
+        return vStr
+    }
+    
     var body: some View {
         HStack {
             ZStack {
@@ -49,9 +67,11 @@ struct ContentView: View {
                     ForEach((0...self.locs.count - 1), id: \.self) { index in
                     Text("X: \(String(Int(self.locs[index].x))), Y: \(String(Int(self.locs[index].y)))")
                     }
+                    Text(getHorizontalString())
+                    Text(getVerticalString())
                 }
             }
-            .frame(width: CGFloat(100), height: CGFloat(200), alignment: .leading)
+            .frame(width: CGFloat(400), height: CGFloat(200), alignment: .leading)
             .padding(.trailing, CGFloat(20))
         }.padding(50)
     }
