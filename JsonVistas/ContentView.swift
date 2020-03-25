@@ -8,42 +8,51 @@
 
 import SwiftUI
 
+struct DraggableViewReference {
+    var name: String
+    var location: CGPoint
+    
+    init(name: String, location: CGPoint) {
+        self.name = name
+        self.location = location
+    }
+}
+
 struct ContentView: View {
     
     var dropDelegate: DraggableViewDropDelegate
     @State public var draggableViews: [DraggableRect] = []
+    @State public var viewLocations: [DraggableViewReference] = []
     @State private var size: CGSize = CGSize(width: 414, height: 736)
-    @State public var locs: [CGPoint] = []
+    
+    @State var nameTextField: String = ""
     
     init() {
         dropDelegate = DraggableViewDropDelegate()
     }
     
-    func newDragView() -> DraggableRect {
-        locs.append(.zero)
-        let index = locs.indices.count - 1
-        return DraggableRect(location: $locs[index], parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
-    }
-    
-    func addView() {
-        self.draggableViews.append(newDragView())
+    func addView(name: String) {
+        viewLocations.append(DraggableViewReference(name: name, location: .zero))
+        let index = viewLocations.count - 1
+        let newView = DraggableRect(location: $viewLocations[index].location, parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
+        draggableViews.append(newView)
     }
     
     func getHorizontalString() -> String {
         var hStr = "H:|-"
-        for loc in (locs.sorted { $0.x < $1.x }) {
-            hStr += "(\(loc.x))-"
+        for view in (viewLocations.sorted { $0.location.x < $1.location.x }) {
+            hStr += "(\(view.name))-"
         }
-        hStr += "-|"
+        hStr += "|"
         return hStr
     }
     
     func getVerticalString() -> String {
         var vStr = "V:|-"
-        for loc in (locs.sorted { $0.y < $1.y }) {
-            vStr += "(\(loc.y))-"
+        for view in (viewLocations.sorted { $0.location.y < $1.location.y }) {
+            vStr += "(\(view.name))-"
         }
-        vStr += "-|"
+        vStr += "|"
         return vStr
     }
     
@@ -52,7 +61,14 @@ struct ContentView: View {
             ZStack {
                 if !draggableViews.isEmpty {
                     ForEach(self.draggableViews.indices, id: \.self) { index in
-                        self.draggableViews[index].position(x: 0, y: 0)
+                        self.draggableViews[index]
+                            .position(x: CGFloat(0), y: 0)
+                            .onLongPressGesture {
+                                if self.viewLocations.indices.contains(index) {
+                                    self.viewLocations.remove(at: index)
+                                }
+                                self.draggableViews.remove(at: index)
+                        }
                     }
                 }
             }
@@ -60,12 +76,13 @@ struct ContentView: View {
             .background(Rectangle().fill(Color.blue))
             .onDrop(of: [""], delegate: dropDelegate)
             VStack {
+                TextField("Enter a unique id or name", text: $nameTextField)
                 Button("Add View", action: {
-                    self.addView()
+                    self.addView(name: self.nameTextField)
                 })
-                if !locs.isEmpty {
-                    ForEach((0...self.locs.count - 1), id: \.self) { index in
-                    Text("X: \(String(Int(self.locs[index].x))), Y: \(String(Int(self.locs[index].y)))")
+                if !viewLocations.isEmpty {
+                    ForEach((0...self.viewLocations.count - 1), id: \.self) { index in
+                        Text("\(String(self.viewLocations[index].name)): (X: \(String(Int(self.viewLocations[index].location.x))), Y: \(String(Int(self.viewLocations[index].location.y))))")
                     }
                     Text(getHorizontalString())
                     Text(getVerticalString())

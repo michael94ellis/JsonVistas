@@ -12,9 +12,9 @@ import AppKit
 struct DraggableRect: View {
     @State public var currentPosition: CGPoint = CGPoint(x: 1, y: 1)
     @State private(set) public var newPosition: CGPoint = .zero
-    @State private var size: CGSize = CGSize(width: 200, height: 60)
-    @Binding var location: CGPoint
+    @State private var size: CGSize = CGSize(width: 60, height: 60)
     
+    @Binding public var location: CGPoint
     public var parentBounds: CGRect
     
     var drag: some Gesture {
@@ -45,7 +45,7 @@ struct DraggableRect: View {
     var body: some View {
         Rectangle()
             .fill(Color.green)
-            .position(x: 200, y: 60)
+            .position(x: 0, y: 0)
             .offset(x: self.currentPosition.x, y: self.currentPosition.y)
             .frame(width: size.width, height: size.height)
             .gesture(drag)
