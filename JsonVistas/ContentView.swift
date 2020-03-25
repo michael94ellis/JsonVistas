@@ -39,9 +39,6 @@ struct ContentView: View {
                 Button("Add View", action: {
                     self.addView()
                 })
-                Text("Output")
-                Text("V:|-(example)-|")
-                Text("H:|-(example)-|")
             }
             .frame(width: CGFloat(100), height: CGFloat(200), alignment: .leading)
             .padding(.trailing, CGFloat(20))
