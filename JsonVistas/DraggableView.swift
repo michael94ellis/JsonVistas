@@ -42,15 +42,15 @@ struct DraggableView: View {
     }
     
     private var inbounds: Bool {
-        if self.currentPosition.x > parentBounds.maxX - 150 {
-            self.currentPosition.x = parentBounds.maxX - 150
-        } else if self.currentPosition.x < parentBounds.minX + 50 {
-            self.currentPosition.x = parentBounds.minX + 50
+        if self.currentPosition.x > parentBounds.maxX  - size.width {
+            self.currentPosition.x = parentBounds.maxX - size.width
+        } else if self.currentPosition.x < parentBounds.minX {
+            self.currentPosition.x = parentBounds.minX
         }
-        if self.currentPosition.y > parentBounds.maxY - size.height - 20 {
-            self.currentPosition.y = parentBounds.maxY - size.height - 20
-        } else if self.currentPosition.y < parentBounds.minY - 20 {
-            self.currentPosition.y = parentBounds.minY - 20
+        if self.currentPosition.y > parentBounds.maxY - size.height {
+            self.currentPosition.y = parentBounds.maxY - size.height
+        } else if self.currentPosition.y < parentBounds.minY {
+            self.currentPosition.y = parentBounds.minY
         }
         return true
     }
@@ -58,11 +58,10 @@ struct DraggableView: View {
     var body: some View {
         Rectangle()
             .fill(Color.green)
-            .frame(width: size.width, height: size.height)
+            .position(x: 200, y: 60)
             .offset(x: self.currentPosition.x, y: self.currentPosition.y)
+            .frame(width: size.width, height: size.height)
             .gesture(drag)
-            .background(Text("FFF")
-                .offset(self.currentPosition.size))
     }
 }
 extension CGSize {

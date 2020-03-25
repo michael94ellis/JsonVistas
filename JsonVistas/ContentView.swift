@@ -25,12 +25,11 @@ struct ContentView: View {
     
     var body: some View {
         HStack {
-            HStack {
-                Group {
-                    if views > 0 {
-                        ForEach(1..<views, id: \.self) { _ in
-                            DraggableView(boundedBy: CGRect(x: -1 * self.views + 50, y: 20, width: Int(self.size.width), height: Int(self.size.height))).position(x: CGFloat(100), y: CGFloat(30))
-                        }
+            ZStack {
+                if views > 0 {
+                    ForEach(0..<views, id: \.self) { index in
+                        DraggableView(boundedBy: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
+                            .position(x: 0, y: 0)
                     }
                 }
             }
