@@ -17,14 +17,10 @@ struct DraggableView: View {
     @State private var lastValidPosition: CGPoint = .zero
     @State private var isValidLocation = true
     
-    var currentLocation: Binding<CGPoint>
     private var parentBounds = CGRect()
-
-    let textFieldImage = Image("textfield").resizable()
     
-    init(boundedBy: CGRect, location: Binding<CGPoint>) {
+    init(boundedBy: CGRect) {
         parentBounds = boundedBy
-        currentLocation = location
     }
     
     var drag: some Gesture {
@@ -32,14 +28,12 @@ struct DraggableView: View {
             .onChanged { value in
                 self.currentPosition = CGSize(width: value.translation.width + self.newPosition.x, height: value.translation.height + self.newPosition.y).point
                 print("Changed Position: \(self.currentPosition)")
-                self.currentLocation.wrappedValue = self.currentPosition
         }
         .onEnded { value in
             self.currentPosition = CGSize(width: value.translation.width + self.newPosition.x, height: value.translation.height + self.newPosition.y).point
             if self.inbounds {
                 self.newPosition = self.currentPosition
                 self.lastValidPosition = self.currentPosition
-                self.currentLocation.wrappedValue = self.currentPosition
             } else {
                 self.currentPosition = self.lastValidPosition
             }
@@ -63,10 +57,12 @@ struct DraggableView: View {
     
     var body: some View {
         Rectangle()
+            .fill(Color.green)
             .frame(width: size.width, height: size.height)
             .offset(x: self.currentPosition.x, y: self.currentPosition.y)
             .gesture(drag)
-            .background(textFieldImage.frame(width: size.width, height: size.height, alignment: .leading).offset(self.currentPosition.size))
+            .background(Text("FFF")
+                .offset(self.currentPosition.size))
     }
 }
 extension CGSize {

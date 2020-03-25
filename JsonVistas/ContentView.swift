@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var draggingItemLocation: CGPoint = .zero
     @State public var images: [String] = []
     var dropDelegate: DraggableViewDropDelegate
     @State private var size: CGSize = CGSize(width: 414, height: 736)
@@ -29,7 +28,7 @@ struct ContentView: View {
             HStack {
                 VStack {
                     ForEach(images, id: \.self) { viewImage in
-                        DraggableView(boundedBy: CGRect(x: -50, y: 0, width: self.size.width, height: self.size.height), location: self.$draggingItemLocation)
+                        DraggableView(boundedBy: CGRect(x: -50, y: 20, width: self.size.width, height: self.size.height)).position(x: 100, y: 30)
                     }
                 }
                 .frame(width: size.width, height: size.height)
@@ -40,9 +39,6 @@ struct ContentView: View {
                 Button("Add View", action: {
                     self.addView()
                 })
-                Text("Current Position")
-                Text("X: \(draggingItemLocation.x)")
-                Text("Y: \(draggingItemLocation.y)")
                 Text("Output")
                 Text("V:|-(example)-|")
                 Text("H:|-(example)-|")
