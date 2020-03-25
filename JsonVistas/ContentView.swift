@@ -34,6 +34,7 @@ struct ContentView: View {
     func addView(name: String) {
         viewLocations.append(DraggableViewReference(name: name, location: .zero))
         let index = viewLocations.count - 1
+        // FIXME: viewLocation is linked with draggableView and causes reference problems
         let newView = DraggableRect(location: $viewLocations[index].location, parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
         draggableViews.append(newView)
     }
@@ -62,12 +63,15 @@ struct ContentView: View {
                 if !draggableViews.isEmpty {
                     ForEach(self.draggableViews.indices, id: \.self) { index in
                         self.draggableViews[index]
-                            .position(x: CGFloat(0), y: 0)
+                            .position(x: 60, y: 60)
                             .onLongPressGesture {
-                                if self.viewLocations.indices.contains(index) {
-                                    self.viewLocations.remove(at: index)
-                                }
                                 self.draggableViews.remove(at: index)
+                                if self.viewLocations.count > 1,
+                                    self.viewLocations.indices.contains(index) {
+                                    self.viewLocations.remove(at: index)
+                                } else {
+                                    self.viewLocations = []
+                                }
                         }
                     }
                 }
@@ -76,19 +80,23 @@ struct ContentView: View {
             .background(Rectangle().fill(Color.blue))
             .onDrop(of: [""], delegate: dropDelegate)
             VStack {
-                TextField("Enter a unique id or name", text: $nameTextField)
-                Button("Add View", action: {
-                    self.addView(name: self.nameTextField)
-                })
-                if !viewLocations.isEmpty {
-                    ForEach((0...self.viewLocations.count - 1), id: \.self) { index in
+                HStack {
+                    TextField("Enter a unique id or name", text: $nameTextField)
+                        .frame(width: 200, height: 30, alignment: .center)
+                    Button("Add View", action: {
+                        self.addView(name: self.nameTextField)
+                        self.nameTextField = ""
+                    })
+                }
+                if !viewLocations.isEmpty && !draggableViews.isEmpty {
+                    ForEach((0...self.draggableViews.count - 1), id: \.self) { index in
                         Text("\(String(self.viewLocations[index].name)): (X: \(String(Int(self.viewLocations[index].location.x))), Y: \(String(Int(self.viewLocations[index].location.y))))")
                     }
                     Text(getHorizontalString())
                     Text(getVerticalString())
                 }
             }
-            .frame(width: CGFloat(400), height: CGFloat(200), alignment: .leading)
+            .frame(width: size.width, height: size.height, alignment: .top)
             .padding(.trailing, CGFloat(20))
         }.padding(50)
     }
@@ -99,6 +107,17 @@ class DraggableViewDropDelegate: DropDelegate {
         return true
     }
 }
+extension CGSize {
+    public var point: CGPoint {
+        CGPoint(x: self.width, y: self.height)
+    }
+}
+extension CGPoint {
+    public var size: CGSize {
+        CGSize(width: self.x, height: self.y)
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

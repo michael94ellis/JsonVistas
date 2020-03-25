@@ -2,15 +2,14 @@
 //  DraggableRect.swift
 //  JsonVistas
 //
-//  Created by Michael Ellis on 3/22/20.
+//  Created by Michael Ellis on 3/25/20.
 //  Copyright © 2020 Mellis. All rights reserved.
 //
 
 import SwiftUI
-import AppKit
 
 struct DraggableRect: View {
-    @State public var currentPosition: CGPoint = CGPoint(x: 1, y: 1)
+    @State public var currentPosition: CGPoint = CGPoint(x: 0, y: 0)
     @State private(set) public var newPosition: CGPoint = .zero
     @State private var size: CGSize = CGSize(width: 60, height: 60)
     
@@ -49,15 +48,5 @@ struct DraggableRect: View {
             .offset(x: self.currentPosition.x, y: self.currentPosition.y)
             .frame(width: size.width, height: size.height)
             .gesture(drag)
-    }
-}
-extension CGSize {
-    public var point: CGPoint {
-        CGPoint(x: self.width, y: self.height)
-    }
-}
-extension CGPoint {
-    public var size: CGSize {
-        CGSize(width: self.x, height: self.y)
     }
 }
