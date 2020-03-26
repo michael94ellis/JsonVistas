@@ -13,9 +13,9 @@ struct ContentView: View {
     let stringMaker = ALVFStringMaker()
     var dropDelegate: DraggableViewDropDelegate = DraggableViewDropDelegate()
     @State var size: CGSize = CGSize(width: 414, height: 736)
-    @State var draggableItemBuilder: DraggableItem = DraggableItem()
-    @State var newSizeX :String = "0"
-    @State var newSizeY :String = "0"
+    @State var draggableItemBuilder: DraggableItem = DraggableItem(size: .zero, bounds: .zero)
+    @State var newSizeX :String = "50"
+    @State var newSizeY :String = "50"
     
     @State var nameTextField: String = ""
     @EnvironmentObject var itemsContainer: DraggableItemsContainer
@@ -26,7 +26,7 @@ struct ContentView: View {
                 if !itemsContainer.views.isEmpty {
                     ForEach(self.itemsContainer.views.indices, id: \.self) { index in
                         self.itemsContainer.views[index]
-                            .position(x: 60, y: 60)
+                            .position(x: self.itemsContainer.viewModels[index].size.width, y: self.itemsContainer.viewModels[index].size.height)
                             .onLongPressGesture {
                                 self.itemsContainer.remove(at: index)
                         }
@@ -45,38 +45,24 @@ struct ContentView: View {
                     }
                     HStack {
                         Text("size: ( X:")
-                        TextField("0", text: $newSizeX)
+                        TextField(newSizeX, text: $newSizeX)
                             .frame(width: 50, height: 30, alignment: .center)
                         Text(", Y:")
-                        TextField("0", text: $newSizeY)
+                        TextField(newSizeY, text: $newSizeY)
                             .frame(width: 50, height: 30, alignment: .center)
                         Text(")")
                     }
-                    HStack {
-                        Text("top spacing:")
-                        TextField("0", text: .constant("0"))
-                            .frame(width: 50, height: 30, alignment: .center)
-                    }
-                    HStack {
-                        Text("left spacing:")
-                        TextField("0", text: .constant("0"))
-                            .frame(width: 50, height: 30, alignment: .center)
-                        Text("right spacing:")
-                        TextField("0", text: .constant("0"))
-                            .frame(width: 50, height: 30, alignment: .center)
-                    }
-                    HStack {
-                        Text("bottom spacing:")
-                        TextField("0", text: .constant("0"))
-                            .frame(width: 50, height: 30, alignment: .center)
-                    }
                     Button("Add View", action: {
                         self.draggableItemBuilder.name = self.nameTextField
+                        self.nameTextField = ""
                         self.draggableItemBuilder.size.width = CGFloat(Int(self.newSizeX) ?? 50)
                         self.draggableItemBuilder.size.height = CGFloat(Int(self.newSizeY) ?? 50)
+                        self.newSizeX = "0"
+                        self.newSizeY = "0"
+                        self.draggableItemBuilder.parentBounds = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
                         self.itemsContainer.viewModels.append(self.draggableItemBuilder)
                         self.itemsContainer.views.append(DraggableRect(index: self.itemsContainer.views.count))
-                        self.draggableItemBuilder = DraggableItem()
+                        self.draggableItemBuilder = DraggableItem(size: .zero, bounds: .zero)
                     })
                 }
                 if !itemsContainer.views.isEmpty {

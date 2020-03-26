@@ -23,7 +23,7 @@ struct DraggableRect: View {
             // Problem: Deleting a viewModel from itemsContainer will trigger a view update, calling this
             // Crash is bc the index doesnt exist(one was deleted so one of the indices is now invalid
         }
-        return DraggableItem()
+        return DraggableItem(size: .zero, bounds: .zero)
     }
     
     var drag: some Gesture {
@@ -54,10 +54,14 @@ struct DraggableRect: View {
     
     var body: some View {
         Rectangle()
-            .fill(Color.green)
+            .border(Color.green, width: 1.0)
             .position(x: 0, y: 0)
+            .foregroundColor(Color.init(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.25))
             .offset(x: self.viewModel.dragPosition.x, y: self.viewModel.dragPosition.y)
             .frame(width: self.viewModel.size.width, height: self.viewModel.size.height)
             .gesture(drag)
+            .background(Text(self.viewModel.name)
+                .foregroundColor(Color.black)
+                .offset(x: self.viewModel.dragPosition.x - self.viewModel.size.width / 2, y: self.viewModel.dragPosition.y - self.viewModel.size.height / 2))
     }
 }
