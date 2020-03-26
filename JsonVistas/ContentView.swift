@@ -8,42 +8,17 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     
-    var dropDelegate: DraggableViewDropDelegate
+    let stringMaker = ALVFStringMaker()
+    var dropDelegate: DraggableViewDropDelegate = DraggableViewDropDelegate()
     @State var size: CGSize = CGSize(width: 414, height: 736)
+    @State var draggableItemBuilder: DraggableItem = DraggableItem()
+    @State var newSizeX :String = "0"
+    @State var newSizeY :String = "0"
+    
     @State var nameTextField: String = ""
     @EnvironmentObject var itemsContainer: DraggableItemsContainer
-    
-    init() {
-        dropDelegate = DraggableViewDropDelegate()
-    }
-    
-    func makeDraggableItemModel(name: String) {
-        let newDragItem = DraggableItem()
-        newDragItem.parentBounds = CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height))
-        newDragItem.name = name
-        self.itemsContainer.viewModels.append(newDragItem)
-    }
-    
-    func getHorizontalString() -> String {
-        var hStr = "H:|-"
-        for view in (itemsContainer.viewModels.sorted { $0.currentPosition.x < $1.currentPosition.x }) {
-            hStr += "(\(view.name))-"
-        }
-        hStr += "|"
-        return hStr
-    }
-    
-    func getVerticalString() -> String {
-        var vStr = "V:|-"
-        for view in (itemsContainer.viewModels.sorted { $0.currentPosition.y < $1.currentPosition.y }) {
-            vStr += "(\(view.name))-"
-        }
-        vStr += "|"
-        return vStr
-    }
     
     var body: some View {
         HStack {
@@ -62,21 +37,54 @@ struct ContentView: View {
             .background(Rectangle().fill(Color.blue))
             .onDrop(of: [""], delegate: dropDelegate)
             VStack {
-                HStack {
-                    TextField("Enter a unique id or name", text: $nameTextField)
-                        .frame(width: 200, height: 30, alignment: .center)
+                VStack {
+                    HStack {
+                        Text("id:")
+                        TextField("Enter a unique id or name", text: $nameTextField)
+                            .frame(width: 200, height: 30, alignment: .center)
+                    }
+                    HStack {
+                        Text("size: ( X:")
+                        TextField("0", text: $newSizeX)
+                            .frame(width: 50, height: 30, alignment: .center)
+                        Text(", Y:")
+                        TextField("0", text: $newSizeY)
+                            .frame(width: 50, height: 30, alignment: .center)
+                        Text(")")
+                    }
+                    HStack {
+                        Text("top spacing:")
+                        TextField("0", text: .constant("0"))
+                            .frame(width: 50, height: 30, alignment: .center)
+                    }
+                    HStack {
+                        Text("left spacing:")
+                        TextField("0", text: .constant("0"))
+                            .frame(width: 50, height: 30, alignment: .center)
+                        Text("right spacing:")
+                        TextField("0", text: .constant("0"))
+                            .frame(width: 50, height: 30, alignment: .center)
+                    }
+                    HStack {
+                        Text("bottom spacing:")
+                        TextField("0", text: .constant("0"))
+                            .frame(width: 50, height: 30, alignment: .center)
+                    }
                     Button("Add View", action: {
-                        self.makeDraggableItemModel(name: self.nameTextField)
+                        self.draggableItemBuilder.name = self.nameTextField
+                        self.draggableItemBuilder.size.width = CGFloat(Int(self.newSizeX) ?? 50)
+                        self.draggableItemBuilder.size.height = CGFloat(Int(self.newSizeY) ?? 50)
+                        self.itemsContainer.viewModels.append(self.draggableItemBuilder)
                         self.itemsContainer.views.append(DraggableRect(index: self.itemsContainer.views.count))
-                        self.nameTextField = ""
+                        self.draggableItemBuilder = DraggableItem()
                     })
                 }
                 if !itemsContainer.views.isEmpty {
                     ForEach((0...self.itemsContainer.views.count - 1), id: \.self) { index in
                         Text("\(String(self.itemsContainer.viewModels[index].name)): (X: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.x))), Y: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.y))))")
                     }
-                    Text(getHorizontalString())
-                    Text(getVerticalString())
+                    Text(stringMaker.getHorizontalString(viewModels: self.itemsContainer.viewModels))
+                    Text(stringMaker.getVerticalString(viewModels: self.itemsContainer.viewModels))
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .top)
@@ -94,6 +102,6 @@ class DraggableViewDropDelegate: DropDelegate {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(DraggableItemsContainer())
     }
 }
