@@ -9,7 +9,7 @@
 import SwiftUI
 
 class DraggableItemsContainer: ObservableObject {
-    @Published public var views: [DraggableRect] = []
+    public var views: [DraggableRect] = []
     @Published var viewModels: [DraggableItem] = []
 }
 
@@ -56,8 +56,9 @@ struct ContentView: View {
                     ForEach(self.itemsContainer.views.indices, id: \.self) { index in
                         self.itemsContainer.views[index]
                             .position(x: 60, y: 60)
-                            .onLongPressGesture {
+                            .onLongPressGesture {print("LP")
                                 self.itemsContainer.views.remove(at: index)
+                                self.itemsContainer.viewModels.remove(at: index)
                         }
                     }
                 }

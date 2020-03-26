@@ -21,7 +21,17 @@ struct DraggableRect: View {
     
     @EnvironmentObject var itemsContainer: DraggableItemsContainer
     @State var index: Int
-    var viewModel: DraggableItem { itemsContainer.viewModels[index] }
+    var viewModel: DraggableItem {
+        if itemsContainer.viewModels.indices.contains(index) {
+            return itemsContainer.viewModels[index]
+        } else {
+            print("No Index \(index)")
+            // FIXME this is a hack to allow deleting
+            // Problem: Deleting a viewModel from itemsContainer will trigger a view update, calling this
+            // Crash is bc the index doesnt exist(one was deleted so one of the indices is now invalid
+        }
+        return DraggableItem()
+    }
     
     var drag: some Gesture {
         DragGesture()
