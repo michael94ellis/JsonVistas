@@ -8,40 +8,32 @@
 
 import SwiftUI
 
-struct DraggableViewReference {
-    var name: String
-    var location: CGPoint
-    var view: DraggableRect
-    
-    init(name: String, location: CGPoint, view: DraggableRect) {
-        self.name = name
-        self.location = location
-        self.view = view
-    }
+class DraggableItemsContainer: ObservableObject {
+    @Published public var views: [DraggableRect] = []
+    @Published var viewModels: [DraggableItem] = []
 }
 
 struct ContentView: View {
     
     var dropDelegate: DraggableViewDropDelegate
-    @State public var views: [DraggableViewReference] = []
-    @State private var size: CGSize = CGSize(width: 414, height: 736)
-    
+    @State var size: CGSize = CGSize(width: 414, height: 736)
     @State var nameTextField: String = ""
+    @EnvironmentObject var itemsContainer: DraggableItemsContainer
     
     init() {
         dropDelegate = DraggableViewDropDelegate()
     }
     
-    func addView(name: String) {
-        let newView = DraggableRect(parentBounds: CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height)))
-        views.append(DraggableViewReference(name: name, location: newView.location?.wrappedValue ?? .zero, view: newView))
-        
-        // FIXME: viewLocation is linked with draggableView and causes reference problems
+    func makeDraggableItemModel(name: String) {
+        let newDragItem = DraggableItem()
+        newDragItem.parentBounds = CGRect(x: 0, y: 0, width: Int(self.size.width), height: Int(self.size.height))
+        newDragItem.name = name
+        self.itemsContainer.viewModels.append(newDragItem)
     }
     
     func getHorizontalString() -> String {
         var hStr = "H:|-"
-        for view in (views.sorted { $0.location.x < $1.location.x }) {
+        for view in (itemsContainer.viewModels.sorted { $0.currentPosition.x < $1.currentPosition.x }) {
             hStr += "(\(view.name))-"
         }
         hStr += "|"
@@ -50,7 +42,7 @@ struct ContentView: View {
     
     func getVerticalString() -> String {
         var vStr = "V:|-"
-        for view in (views.sorted { $0.location.y < $1.location.y }) {
+        for view in (itemsContainer.viewModels.sorted { $0.currentPosition.y < $1.currentPosition.y }) {
             vStr += "(\(view.name))-"
         }
         vStr += "|"
@@ -60,12 +52,12 @@ struct ContentView: View {
     var body: some View {
         HStack {
             ZStack {
-                if !views.isEmpty {
-                    ForEach(self.views.indices, id: \.self) { index in
-                        self.views[index].view
+                if !itemsContainer.views.isEmpty {
+                    ForEach(self.itemsContainer.views.indices, id: \.self) { index in
+                        self.itemsContainer.views[index]
                             .position(x: 60, y: 60)
                             .onLongPressGesture {
-                                self.views.remove(at: index)
+                                self.itemsContainer.views.remove(at: index)
                         }
                     }
                 }
@@ -78,13 +70,14 @@ struct ContentView: View {
                     TextField("Enter a unique id or name", text: $nameTextField)
                         .frame(width: 200, height: 30, alignment: .center)
                     Button("Add View", action: {
-                        self.addView(name: self.nameTextField)
+                        self.makeDraggableItemModel(name: self.nameTextField)
+                        self.itemsContainer.views.append(DraggableRect(index: self.itemsContainer.views.count))
                         self.nameTextField = ""
                     })
                 }
-                if !views.isEmpty {
-                    ForEach((0...self.views.count - 1), id: \.self) { index in
-                        Text("\(String(self.views[index].name)): (X: \(String(Int(self.views[index].location.x))), Y: \(String(Int(self.views[index].location.y))))")
+                if !itemsContainer.views.isEmpty {
+                    ForEach((0...self.itemsContainer.views.count - 1), id: \.self) { index in
+                        Text("\(String(self.itemsContainer.viewModels[index].name)): (X: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.x))), Y: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.y))))")
                     }
                     Text(getHorizontalString())
                     Text(getVerticalString())
