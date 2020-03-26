@@ -9,13 +9,6 @@
 import SwiftUI
 import Combine
 
-class DraggableItem: ObservableObject {
-    @Published public var name: String = ""
-    @Published public var size: CGSize = CGSize(width: 60, height: 60)
-    @Published public var parentBounds: CGRect = .zero
-    @Published public var dragPosition: CGPoint = .zero 
-    @Published public var currentPosition: CGPoint = .zero
-}
 
 struct DraggableRect: View {
     

@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-class DraggableItemsContainer: ObservableObject {
-    @Published var views: [DraggableRect] = []
-    @Published var viewModels: [DraggableItem] = []
-    
-    public func remove(at index: Int) {
-        self.views.remove(at: index)
-        self.viewModels.remove(at: index)
-    }
-}
 
 struct ContentView: View {
     
@@ -97,16 +88,6 @@ struct ContentView: View {
 class DraggableViewDropDelegate: DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         return true
-    }
-}
-extension CGSize {
-    public var point: CGPoint {
-        CGPoint(x: self.width, y: self.height)
-    }
-}
-extension CGPoint {
-    public var size: CGSize {
-        CGSize(width: self.x, height: self.y)
     }
 }
 
