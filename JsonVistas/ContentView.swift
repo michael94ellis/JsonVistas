@@ -13,9 +13,11 @@ struct ContentView: View {
     let stringMaker = ALVFStringMaker()
     var dropDelegate: DraggableViewDropDelegate = DraggableViewDropDelegate()
     @State var size: CGSize = CGSize(width: 414, height: 736)
-    @State var draggableItemBuilder: DraggableItem = DraggableItem(size: .zero, bounds: .zero)
-    @State var newSizeX :String = "50"
-    @State var newSizeY :String = "50"
+    @State var newSizeX: String = "50"
+    @State var newSizeY: String = "50"
+    @State var rowTolerance: String = "10"
+    @State var columnTolerance: String = "10"
+    var draggableItemBuilder: DraggableItem { self.itemsContainer.draggableItemBuilder }
     
     @State var nameTextField: String = ""
     @EnvironmentObject var itemsContainer: DraggableItemsContainer
@@ -44,33 +46,45 @@ struct ContentView: View {
                             .frame(width: 200, height: 30, alignment: .center)
                     }
                     HStack {
-                        Text("size: ( X:")
+                        Text("Width")
                         TextField(newSizeX, text: $newSizeX)
                             .frame(width: 50, height: 30, alignment: .center)
-                        Text(", Y:")
+                        Text("Height")
                         TextField(newSizeY, text: $newSizeY)
                             .frame(width: 50, height: 30, alignment: .center)
-                        Text(")")
                     }
                     Button("Add View", action: {
                         self.draggableItemBuilder.name = self.nameTextField
                         self.nameTextField = ""
                         self.draggableItemBuilder.size.width = CGFloat(Int(self.newSizeX) ?? 50)
                         self.draggableItemBuilder.size.height = CGFloat(Int(self.newSizeY) ?? 50)
-                        self.newSizeX = "0"
-                        self.newSizeY = "0"
+                        self.newSizeX = "50"
+                        self.newSizeY = "50"
                         self.draggableItemBuilder.parentBounds = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
                         self.itemsContainer.viewModels.append(self.draggableItemBuilder)
                         self.itemsContainer.views.append(DraggableRect(index: self.itemsContainer.views.count))
-                        self.draggableItemBuilder = DraggableItem(size: .zero, bounds: .zero)
+                        self.itemsContainer.draggableItemBuilder = self.draggableItemBuilder
+                        self.itemsContainer.draggableItemBuilder = DraggableItem(size: .zero, bounds: .zero)
                     })
+                    HStack {
+                        Text("Rows Tolerance")
+                        TextField(rowTolerance, text: $rowTolerance)
+                            .frame(width: 50, height: 30, alignment: .center)
+                        Text("Columns Tolerance")
+                        TextField(columnTolerance, text: $columnTolerance)
+                            .frame(width: 50, height: 30, alignment: .center)
+                    }
                 }
                 if !itemsContainer.views.isEmpty {
                     ForEach((0...self.itemsContainer.views.count - 1), id: \.self) { index in
                         Text("\(String(self.itemsContainer.viewModels[index].name)): (X: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.x))), Y: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.y))))")
                     }
-                    Text(stringMaker.getHorizontalString(viewModels: self.itemsContainer.viewModels))
-                    Text(stringMaker.getVerticalString(viewModels: self.itemsContainer.viewModels))
+                    ForEach(self.stringMaker.getHorizontalStrings(tolerance: Int(self.rowTolerance) ?? 10, viewModels: self.itemsContainer.viewModels), id: \.self) { index in
+                        Text(index)
+                    }
+                    ForEach(self.stringMaker.getVerticalStrings(tolerance: Int(columnTolerance) ?? 10, viewModels: self.itemsContainer.viewModels), id: \.self) { index in
+                        Text(index)
+                    }
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .top)
