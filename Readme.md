@@ -9,13 +9,12 @@ The purpose of this project is to better understand Auto Layout Visual Format an
 [Here is the Apple Auto-Layout Visual Format Documentation](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)
 
 ## How to use the app
----
+<hr/>
 Create views, then drag, tap, double table, long press, and arrange them to create Visual Format Strings
 
 ![screen of app](screenshot.png)
 
-## Examples
----
+### Example Output
 ```
 H:|-[bottom]-|
 H:|-[top]-|
@@ -25,7 +24,8 @@ V:|-[top]-[mid_left]-[bottom]-|
 ```
 
 ## Visual Format Grammar
----
+<hr/>
+
 ### Syntax:
 
 * Orientation
@@ -57,7 +57,8 @@ V:|-[top]-[mid_left]-[bottom]-|
 * relation: todo, basically width or height of a view would be `H:[viewName(==width)]` or `V:[viewName(>=minHeight)]`
 
 ## Error Handling
----
+<hr/>
+
 If you make a syntactic mistake, an exception is thrown with a diagnostic message. For example:
 ```
 Expected ':' after 'V' to specify vertical arrangement
@@ -79,6 +80,8 @@ V:|[blackBox4(>30)]|
 
 
 # TODO:
+<hr>
+
 * Relations
 * Predicates and Predicate Lists
 * Priority
