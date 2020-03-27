@@ -75,16 +75,7 @@ struct ContentView: View {
                     ForEach((0...self.itemsContainer.views.count - 1), id: \.self) { index in
                         Text("\(String(self.itemsContainer.viewModels[index].name)): (X: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.x))), Y: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.y))))")
                     }
-                    ForEach(self.itemsContainer.getFormatStrings(tolerance: Int(self.edgeMatchingTolerance) ?? 10), id: \.self) { string in
-                        Text(string)
-                    }
-                    Button("Copy to Clipboard", action: {
-                        var string = ""
-                        self.itemsContainer.getFormatStrings(tolerance: Int(self.edgeMatchingTolerance) ?? 10).forEach { string.append("\($0)\n") }
-                        let pasteboard = NSPasteboard.general
-                        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-                        pasteboard.setString(string, forType: NSPasteboard.PasteboardType.string)
-                    })
+                    InstructionsView()
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .top)

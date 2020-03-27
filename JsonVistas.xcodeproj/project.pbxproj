@@ -12,6 +12,7 @@
 		2F1D1DF0242CDD230068483A /* DraggableItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D1DEF242CDD230068483A /* DraggableItemsContainer.swift */; };
 		2F1D1DF2242CDD420068483A /* DraggableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D1DF1242CDD420068483A /* DraggableItem.swift */; };
 		2F1D1DF6242CF5EA0068483A /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D1DF5242CF5EA0068483A /* Readme.md */; };
+		2F1D1DFA242E4DD30068483A /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D1DF9242E4DD30068483A /* InstructionsView.swift */; };
 		2FE029F8242728A70009935E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE029F7242728A70009935E /* AppDelegate.swift */; };
 		2FE029FA242728A70009935E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE029F9242728A70009935E /* ContentView.swift */; };
 		2FE029FC242728A80009935E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE029FB242728A80009935E /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		2F1D1DEF242CDD230068483A /* DraggableItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableItemsContainer.swift; sourceTree = "<group>"; };
 		2F1D1DF1242CDD420068483A /* DraggableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableItem.swift; sourceTree = "<group>"; };
 		2F1D1DF5242CF5EA0068483A /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		2F1D1DF9242E4DD30068483A /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		2FE029F4242728A70009935E /* JsonVistas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonVistas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE029F7242728A70009935E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FE029F9242728A70009935E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				2FE029F7242728A70009935E /* AppDelegate.swift */,
 				2FE029F9242728A70009935E /* ContentView.swift */,
+				2F1D1DF9242E4DD30068483A /* InstructionsView.swift */,
 				2F1D1DEF242CDD230068483A /* DraggableItemsContainer.swift */,
 				2F1D1DF1242CDD420068483A /* DraggableItem.swift */,
 				2F1D1DEB242C02920068483A /* DraggableRect.swift */,
@@ -286,6 +289,7 @@
 				2FE029FA242728A70009935E /* ContentView.swift in Sources */,
 				2F1D1DF0242CDD230068483A /* DraggableItemsContainer.swift in Sources */,
 				2F1D1DEC242C02920068483A /* DraggableRect.swift in Sources */,
+				2F1D1DFA242E4DD30068483A /* InstructionsView.swift in Sources */,
 				2FE029F8242728A70009935E /* AppDelegate.swift in Sources */,
 				2F1D1DEE242CDD030068483A /* Extensions.swift in Sources */,
 			);
