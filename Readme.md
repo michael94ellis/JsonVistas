@@ -17,11 +17,11 @@ Create views, then drag, tap, double table, long press, and arrange them to crea
 ## Examples
 ---
 ```
-H:|-(bottom==100)-|
-H:|-(top==100)-|
-H:|-(left_mid==50)-(right_mid==100)-|
-V:|-(top==100)-(right_mid==100)-(bottom==100)-|
-V:|-(top==100)-(left_mid==50)-(bottom==100)-|
+H:|-[bottom]-|
+H:|-[top]-|
+H:|-[mid_left]-[mid_right]-|
+V:|-[top]-[mid_right]-[bottom]-|
+V:|-[top]-[mid_left]-[bottom]-|
 ```
 
 ## Visual Format Grammar
