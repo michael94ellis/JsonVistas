@@ -12,7 +12,7 @@ The purpose of this project is to better understand Auto Layout Visual Format an
 ---
 Create views, then drag, tap, double table, long press, and arrange them to create Visual Format Strings
 
-![app demo](https://giphy.com/gifs/eg9hGYoJWOVEB5bFlk)
+![app demo](https://media.giphy.com/media/eg9hGYoJWOVEB5bFlk/giphy.gif)
 
 ### Example Output
 ```
