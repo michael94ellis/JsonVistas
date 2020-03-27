@@ -1,6 +1,9 @@
 # Auto Layout Visual Format
 ---
 ## What is this?
+
+This should make it easier to create views from code, and easier to transmit layouts in json.
+
 The purpose of this project is to better understand Auto Layout Visual Format and to make it easier to use. Ironically this project is made in SwiftUI for macOS. This single page app creates Visual Format Strings that are only useful for what SwiftUI is intended to replace.
 
 [Here is the Apple Auto-Layout Visual Format Documentation](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)
@@ -9,10 +12,16 @@ The purpose of this project is to better understand Auto Layout Visual Format an
 ---
 Create views, then drag, tap, double table, long press, and arrange them to create Visual Format Strings
 
+![screen of app](screenshot.png)
+
 ## Examples
 ---
 ```
-
+H:|-(bottom==100)-|
+H:|-(top==100)-|
+H:|-(left_mid==50)-(right_mid==100)-|
+V:|-(top==100)-(right_mid==100)-(bottom==100)-|
+V:|-(top==100)-(left_mid==50)-(bottom==100)-|
 ```
 
 ## Visual Format Grammar
@@ -74,3 +83,4 @@ V:|[blackBox4(>30)]|
 * Predicates and Predicate Lists
 * Priority
 * Metrics
+* Examples

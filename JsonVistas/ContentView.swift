@@ -17,8 +17,8 @@ struct ContentView: View {
     @State var newSizeY: String = "50"
     @State var edgeMatchingTolerance: String = "10"
     @State var nameTextField: String = ""
-    
-    @State var draggableItemBuilder: DraggableItem
+    /// This is the draggable item that is in the staging area, hitting the add view button should add the view it represents to the screen area
+    @State var draggableItemBuilder: DraggableItem = DraggableItem(name: "", size: .zero, bounds: .zero)
     @EnvironmentObject var itemsContainer: DraggableItemsContainer
     
     var body: some View {
@@ -65,7 +65,7 @@ struct ContentView: View {
                         let newRect = DraggableRect(index: self.itemsContainer.views.count)
                         self.itemsContainer.add(newView: newRect, newModel: self.draggableItemBuilder)
                         // Reset things
-                        self.draggableItemBuilder = DraggableItem(name: self.nameTextField, size: .zero, bounds: .zero)
+                        self.draggableItemBuilder = DraggableItem(name: "", size: .zero, bounds: .zero)
                         self.newSizeX = "50"
                         self.newSizeY = "50"
                         self.nameTextField = ""

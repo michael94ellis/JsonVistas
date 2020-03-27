@@ -48,7 +48,8 @@ class DraggableItemsContainer: ObservableObject {
                     let currentViewBreadth = $0.currentPosition.y...($0.currentPosition.y + $0.size.height)
                     return currentViewBreadth.overlaps(thisViewsBreadth)
                 }
-                rows.append(horiztontallyAdjacentViews)
+                rows.append(horiztontallyAdjacentViews
+                    .sorted(by: { $0.currentPosition.x < $1.currentPosition.x }))
         }
         return rows
     }
@@ -66,7 +67,8 @@ class DraggableItemsContainer: ObservableObject {
                     let currentViewBreadth = $0.currentPosition.x...($0.currentPosition.x + $0.size.width)
                     return currentViewBreadth.overlaps(thisViewsBreadth)
                 }
-                rows.append(verticallyAdjacentViews)
+                rows.append(verticallyAdjacentViews
+                    .sorted(by: { $0.currentPosition.y < $1.currentPosition.y }))
         }
         return rows
     }
@@ -82,7 +84,7 @@ class DraggableItemsContainer: ObservableObject {
                 } else {
                     str += "-"
                 }
-                str += "(\(row[index].name)==\(Int(row[index].size.height)))"
+                str += "[\(row[index].name)]" // TODO add widths and heights, (==\(Int(row[index].size.height))
                 if index == row.count - 1 {
                     // Container Padding
                     let distanceToBottom = row[index].parentBounds.maxY - row[index].currentPosition.y - row[index].size.height
