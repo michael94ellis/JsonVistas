@@ -79,6 +79,7 @@ struct ContentView: View {
                     ForEach((0...self.itemsContainer.views.count - 1), id: \.self) { index in
                         Text("\(String(self.itemsContainer.viewModels[index].name)): (X: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.x))), Y: \(String(Int(self.itemsContainer.viewModels[index].dragPosition.y))))")
                     }
+                    Text("-----------")
                     ForEach(self.stringMaker.getHorizontalStrings(tolerance: Int(self.rowTolerance) ?? 10, viewModels: self.itemsContainer.viewModels), id: \.self) { index in
                         Text(index)
                     }

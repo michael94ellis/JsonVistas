@@ -41,6 +41,19 @@ struct ALVFStringMaker {
         }
         return strings
     }
+    // FIXME: - recognize if items are in the bounds of others
+    ///
+    ///  [A][][][][][]
+    ///
+    ///  [B]          [C][][]
+    ///  []          [][][]
+    ///
+    /// Expected:
+    ///     V: A B
+    ///     V: A C
+    ///     H: A
+    ///     H: B C
+    ///
     
     func getVerticalStrings(tolerance: Int, viewModels: [DraggableItem]) -> [String] {
         var rows: [[DraggableItem]] = []
