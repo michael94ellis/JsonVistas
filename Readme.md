@@ -1,4 +1,4 @@
-# Auto Layout Visual Format
+# A Tool To Make Auto Layout Visual Format String
 ---
 ## What is this?
 
