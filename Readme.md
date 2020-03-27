@@ -5,18 +5,32 @@ The purpose of this project is to better understand Auto Layout Visual Format an
 
 [Here is the Apple Auto-Layout Visual Format Documentation](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)
 
-
-## Grammar of Visual Format Strings
+## How to use the app
 ---
-### Each Visual Format String is comprised from the following syntax:
+Create views, then drag, tap, double table, long press, and arrange them to create Visual Format Strings
+
+## Examples
+---
+```
+
+```
+
+## Visual Format Grammar
+---
+### Syntax:
 
 * Orientation
     * Optional, ignoring this implies horizontal
     * `H:` or `V:`
 * Superview
+    * Optional, ignoring this could lead to unexpected views
     * `|` No hyphen suggests the view should touch the superview/container
     * `|-`, or `-|` A hyphen provides >=8 units of space away from the superview/container
 * Connection
+    * Optional, ignoring this will cause a few things
+        * `H:|(view)` The view will hug the container on the left side
+        * `(view)(other_view)` The view will hug the other_view
+    * `-` A single hyphen will provide some default amount of padding depending on the other side of the view
     * `-units@priority-` This will create a distance of the number of units at the given priority
 * View
     * `(unique_id_string)` This will relate to a view of the same name, the id string should be unique
@@ -24,14 +38,14 @@ The purpose of this project is to better understand Auto Layout Visual Format an
 ```
 (<orientation>:)?(<superview><connection>)?<view>(<connection><view>)*(<connection><superview>)?
 ```
-#### Replacement version of the former explanation:
+#### Another Explanation:
 * ? indicates 0 or 1 are allowed
 * Asterisk(*) indicates 1 or more are necessary
 * orientation: `H:`, `V:`
 * superview: `|`
 * connection: ``, `-`, `-(value)-`
-* view: `(unique_string_id)`
-
+* view: `[unique_string_id(relation)]`
+* relation: todo, basically width or height of a view would be `H:[viewName(==width)]` or `V:[viewName(>=minHeight)]`
 
 ## Error Handling
 ---
@@ -53,3 +67,10 @@ Unknown relation. Must be ==, >=, or <=
 V:|[blackBox4(>30)]|
                ^
 ```
+
+
+# TODO:
+* Relations
+* Predicates and Predicate Lists
+* Priority
+* Metrics
